@@ -1,0 +1,22 @@
+#timebar a{
+	text-decoration: blink;
+	margin-left: 1%;
+}
+#timebar a:hover{
+	color: rgba(255,100,100,.8);
+}
+#timebar a:active{
+	color: rgba(255,40,40,.8);
+	border-style: none;
+}
+#timebar a:focus{
+	color: rgba(255,40,40,.8);
+	font-weight: bold;
+}
+#timebar span{
+	margin-right: 1%;
+	font-size: 16px;
+}
+#timebar p{
+	margin-left: 2%;
+}

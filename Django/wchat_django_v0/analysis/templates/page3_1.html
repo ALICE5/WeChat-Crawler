@@ -1,0 +1,852 @@
+{% load static %}
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>文章类型分析</title>
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href={% static "css/homepage.css" %}>
+		<link rel="stylesheet" href={% static "css/index.css" %}>
+		<link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
+		<link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+
+	</head>
+
+	<body>
+		<div class="header">
+			<div id="picture" style="width: 220px;float: left;position: fixed;background-color: rgb(240,240,240);height: 50px;">
+				<a href="/cover" >
+					<img src={% static "img/chinaunicom.png" %}/>
+				</a>
+			</div>
+			<div style="height: 40px;margin-top:5px;width: 2px;background-color: rgb(100,100,100);float: left;margin-left: 220px;"></div>
+			<div style="height: 20px;margin-left:20px;margin-top:15px;width: 150px;float: left;">
+				<p style="font-size: 16px;">微信公众号数据分析</p>
+			</div>
+			<div class="header_table">
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)"><i class="glyphicon glyphicon-ok-circle"></i>&nbsp;&nbsp;创造404</a>
+				</div>
+				<div style="height: 40px;width: 2px;background-color: rgb(100,100,100);margin-left: 5%;margin-right: 5%;"></div>
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)">我的应用</a>
+				</div>
+				<div style="height: 40px;width: 2px;background-color: rgb(100,100,100);margin-left: 5%;margin-right: 5%;"></div>
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)">分析报表</a>
+				</div>
+			</div>
+		</div>
+		<div style="height: 0px;width: 220px;background-color: rgba(40,240,240,0);"></div>
+		<div id="wrapper" class="toggled">
+			
+			<div class="overlay" style="display: block;"></div>
+			<!-- Sidebar -->
+			<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+				<ul class="nav sidebar-nav">
+					<li class="sidebar-brand" style="height: 40px;">
+						<a href="/page1_1" style="height: 40px; font-size: 18px;">
+							<div style="color: #FFFFFF;margin-top: -10px;text-align: center;">文章类型分析</div>
+						</a>
+					</li>
+
+					<li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home"></i>&nbsp; 运营数据概览 <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">公众号整体情势预判</li>
+							<li>
+								<a href="/page1_1">近7日数据</a>
+							</li>
+							<li>
+								<a href="/page1_2">历史趋势</a>
+							</li>
+						</ul>
+					</li>
+                    <li class="open">
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-signal"></i>&nbsp; 内容质量分析 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">数据对比</li>
+
+							<li>
+								<a href="/page3_1" style="color: rgba(255,11,11,0.9);">文章类型分析</a>
+							</li>
+							<li>
+								<a href="/page3_2">TOP10文章榜单</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-list"></i>&nbsp; 作者影响力分析 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">发现大V</li>
+
+							<li>
+								<a href="/page2_2">月度榜单</a>
+							</li>
+							<li>
+								<a href="/page2_3">年度榜单</a>
+							</li>
+						</ul>
+					</li>
+
+					<li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>&nbsp; 舆情监控 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">智能语义分析+危机传播管理</li>
+							<li>
+								<a href="/page4_1">标题热词</a>
+							</li>
+							<li>
+								<a href="/page4_2">精选评论热词</a>
+							</li>
+                            <li>
+								<a href="/page4_3">情感分析</a>
+							</li>
+						</ul>
+					</li>
+					
+				</ul>
+			</nav>
+			<!-- /#sidebar-wrapper -->
+
+			<!-- Page Content -->
+			<div id="page-content-wrapper">
+				<div class="headbar">
+					<button type="button" class="hamburger is-open animated fadeInLeft" data-toggle="offcanvas">
+            				<span class="hamb-top"></span>
+						<span class="hamb-middle"></span>
+						<span class="hamb-bottom"></span>
+					</button>
+					<ul class="header_table2">
+						<li><a href="/app_view">应用概览</a></li>
+						<li class="active"><a href="javascript:void(0)">基础分析</a></li>
+						<li><a href="/contact_us">关于我们</a></li>
+					</ul>
+				</div>
+				<!--start of 内容页面-->
+				<div class="container">
+					
+					<div class="box">
+						<div class="box" style="display: flex;">
+							<h4>截止昨天凌晨0:00的数据</h4><i class="glyphicon glyphicon-question-sign" style="margin: 7px;margin-top: 11px;color: rgba(0,0,0,.5);"></i>
+						</div>
+					</div>
+					<div class="box">
+						<div class="box">
+	  						<div style="width: 140px;background-color: rgba(255,0,0,.8);height: 40px;padding-top: 1px;padding-left: 25px;">
+	  							<h5 style="color: rgba(255,255,255,1);">文章类型分析</h5>  							
+	  						</div>	
+						</div>
+					</div>
+					
+					<div class="box">
+						<!--饼图-->
+						<div class="box">
+							<div id="chart" style="width: 100%;height: auto;background-color: rgba(234,234,234,0.9);">
+								<div class="box" id="box_chart" style="height: 500px;display: block;">	</div>
+							</div>
+						</div>
+						
+						<!--导航条-->
+						<div class="box">
+							<div class="box-table">
+								<div class="masthead">   
+							        <nav>
+							          	<ul class="nav nav-justified">
+							          		<li style="text-align:right;font-weight: bold;font-size: 16px;">分指标</li>
+							          		<li style="text-align:left;font-weight: bold;font-size: 16px;">展示</li>
+							            		<li id="tab_l1" class="active"><a href="javascript:void(0)" id="tab_a1">浏览量(PV)</a></li>
+							            		<li id="tab_l2"><a href="javascript:void(0)" id="tab_a2">点赞数</a></li>
+							            		<li id="tab_l3"><a href="javascript:void(0)" id="tab_a3">评论数</a></li>
+							            		<li id="tab_l4"><a href="javascript:void(0)" id="tab_a4">文章数</a></li>
+							            		<li></li>
+							            		<li></li>
+							            		<li></li>
+							          	</ul>
+							        </nav>
+								</div>						 	
+							</div>
+						</div>
+						
+						<!--图表区域-->
+						<div id="chart" style="width: 100%;height: auto;">
+							<div class="box" style="display: flex;border-style: none;">
+								<div style="height: 20px;width: 2px;background-color: rgb(0,0,0);margin-left: 1%;margin-right: 1%;"></div>
+								<p>&nbsp;&nbsp;&nbsp;概况</p>
+							</div>
+							<div class="box" id="box_chart1" style="height: 500px;display: block;background-color: rgba(234,234,234,0.9)">	</div>
+							<div class="box" id="box_chart2" style="height: 500px;display: none;background-color: rgba(234,234,234,0.9)">	</div>
+							<div class="box" id="box_chart3" style="height: 500px;display: none;background-color: rgba(234,234,234,0.9)">	</div>
+							<div class="box" id="box_chart4" style="height: 500px;display: none;background-color: rgba(234,234,234,0.9)">	</div>
+							<div class="box" style="display: flex;border-style: none;">
+								<div style="height: 20px;width: 2px;background-color: rgb(0,0,0);margin-left: 1%;margin-right: 1%;"></div>
+								<p>&nbsp;&nbsp;&nbsp;榜单(原创)</p>
+							</div>
+							<div class="box" style="height: auto;background-color: rgba(234,234,234,0.9);">
+								<table id="table1">
+								</table>
+							</div>
+                            <div class="box" style="display: flex;border-style: none;">
+								<div style="height: 20px;width: 2px;background-color: rgb(0,0,0);margin-left: 1%;margin-right: 1%;"></div>
+								<p>&nbsp;&nbsp;&nbsp;榜单(非原创)</p>
+							</div>
+							<div class="box" style="height: auto;background-color: rgba(234,234,234,0.9);">
+								<table id="table2">
+								</table>
+							</div>
+							<div class="box" style="display: flex;border-style: none;">
+								<div style="height: 20px;width: 2px;background-color: rgba(0,0,0,0);margin-left: 1%;margin-right: 1%;"></div>
+							</div>
+						</div>
+					</div>
+					
+					<!--制作人-->
+					<div class="box" style="border-style: none;display: flex;justify-content: center;background-color: rgba(0,0,0,0);">
+						<div class="inner">
+							<p>Data Analyzed for
+								<a href="javascript:void(0)">新华社</a>, by
+								<a href="javascript:void(0)">@创造404</a>.</p>
+						</div>
+					</div>
+				</div>
+				<!--end of 内容页面-->
+			</div>
+		<!-- /#page-content-wrapper -->
+		</div>
+		<!-- /#wrapper -->
+
+		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+		<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+		<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts-en.common.js"></script>
+		<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+		<!--侧边栏效果-->
+		<script src={% static "js/slider_bar.js" %} type="text/javascript" charset="utf-8"></script>
+		<!--表格-->
+		<script src={% static "js/table3_1.js" %} type="text/javascript" charset="utf-8"></script>
+		<!--Tab切换-->
+		<!--饼图-->
+		<script type="text/javascript">
+			console.log({{count_type_original}})//原创数量 饼图
+			console.log({{count_type_reprint}})//转载数量 饼图
+			console.log({{count_original_readNum_list|safe}})//原创类型的文章阅读数 最后一个值为平均 和转载一起柱状图
+			console.log({{count_reprint_readNum_list|safe}})//转载类型的文章的阅读数 最后一个为平均值 一起柱状图
+			console.log({{count_original_likeNum_list|safe}})//原创类型的文章的点赞数 最后一个为平均 和转载一起柱状图
+			console.log({{count_reprint_likeNum_list|safe}})//转载。。。。。。。。。。。。一起柱状图
+			console.log({{count_original_comment_list|safe}})//原创 评论数 没有平均值 折线图
+			console.log({{count_reprint_comment_list|safe}})//转载。。。。。。。。。。。。。。。一起折线图
+			console.log({{count_original_paper_list|safe}})//原创 文章数 没有平均值 折线图
+			console.log({{count_reprint_paper_list|safe}})//转载。。。。。。。。。。。一起
+
+
+
+
+			var myChart = echarts.init(document.getElementById('box_chart'));
+				var option = {
+			    title : {
+			        text: '文章类型分析',
+			        subtext: '原创/非原创',
+			        x:'center'
+			    },
+			    tooltip : {
+			        trigger: 'item',
+			        formatter: "{a} <br/>{b} : {c} ({d}%)"
+			    },
+			    legend: {
+			        orient : 'vertical',
+			        x : 'left',
+			        data:['原创','非原创']
+			    },
+			    toolbox: {
+			        show : true,
+			        feature : {
+			            mark : {show: true},
+			            dataView : {show: true, readOnly: false},
+			            magicType : {
+			                show: true, 
+			                type: ['pie', 'funnel'],
+			                option: {
+			                    funnel: {
+			                        x: '25%',
+			                        width: '50%',
+			                        funnelAlign: 'left',
+			                        max: 1548
+			                    }
+			                }
+			            },
+			            restore : {show: true},
+			            saveAsImage : {show: true}
+			        }
+			    },
+			    calculable : true,
+
+
+			    series : [
+			        {
+			            name:'文章类型',
+			            type:'pie',
+			            radius : ['55%','66%'],
+			            center: ['50%', '50%'],
+                        label: {
+                            normal: {
+                                formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                                backgroundColor: '#eee',
+                                borderColor: '#aaa',
+                                borderWidth: 1,
+                                borderRadius: 4,
+
+                                rich: {
+                                    a: {
+                                        color: '#999',
+                                        lineHeight: 22,
+                                        align: 'center'
+                                    },
+
+                                    hr: {
+                                        borderColor: '#aaa',
+                                        width: '100%',
+                                        borderWidth: 0.5,
+                                        height: 0
+                                    },
+                                    b: {
+                                        fontSize: 16,
+                                        lineHeight: 33
+                                    },
+                                    per: {
+                                        color: '#eee',
+                                        backgroundColor: '#334455',
+                                        padding: [2, 4],
+                                        borderRadius: 2
+                                    }
+                                }
+                            }
+                        },
+			            data:[
+			                {value:{{ count_type_original }}, name:'原创', selected:'true'},
+			                {value:{{ count_type_reprint }}, name:'非原创'}
+			            ]
+			        },
+                    {
+			            name:'文章类型',
+			            type:'pie',
+			            radius : ['39%','55%'],
+			            center: ['50%', '50%'],
+
+			            data:[
+			                {
+			                    value:{{ count_type_original }},
+                                name:'原创',
+                                selected:'true',
+                                itemStyle:{
+                                    normal:{
+                                        color:'rgba(200,0,0,0.7)',
+                                    }
+                                },
+                                label : {
+                                    show : false   //隐藏标示文字
+                                },
+                                labelLine : {
+                                    show : false   //隐藏标示线
+                                }
+                            },
+			                {
+			                    value:{{ count_type_reprint }},
+                                name:'非原创',
+                                itemStyle:{
+                                    normal:{
+                                        color:'rgba(0,40,0,0.7)',
+                                    }
+                                },
+                                label : {
+                                    show : false   //隐藏标示文字
+                                },
+                                labelLine : {
+                                    show : false   //隐藏标示线
+                                }
+			                }
+			            ]
+			        },
+                    {
+			            name:'文章类型',
+			            type:'pie',
+			            radius : ['66%','71%'],
+			            center: ['50%', '50%'],
+
+			            data:[
+			                {
+			                    value:{{ count_type_original }},
+                                name:'原创',
+                                selected:'true',
+                                itemStyle:{
+                                    normal:{
+                                        color:'#660000',
+                                    }
+                                },
+                                label : {
+                                    show : false   //隐藏标示文字
+                                },
+                                labelLine : {
+                                    show : false   //隐藏标示线
+                                }
+                            },
+			                {
+			                    value:{{ count_type_reprint }},
+                                name:'非原创',
+                                itemStyle:{
+                                    normal:{
+                                        color:'003300',
+                                    }
+                                },
+                                label : {
+                                    show : false   //隐藏标示文字
+                                },
+                                labelLine : {
+                                    show : false   //隐藏标示线
+                                }
+			                }
+			            ]
+			        },
+			    ]
+			};
+			                    
+			myChart.setOption(option);
+		</script>
+		<!--highcharts 图表1-->
+		<script type="text/javascript">
+			var myChart = echarts.init(document.getElementById('box_chart1'));
+			option = {
+			    title : {
+			        text: '文章类型阅读量',
+			        subtext: '原创/转载'
+			    },
+			    tooltip : {
+			        trigger: 'axis'
+			    },
+			    legend: {
+			        data:['原创', '转载']
+			    },
+			    toolbox: {
+			        show : true,
+			        feature : {
+			            mark : {show: true},
+			            dataView : {show: true, readOnly: false},
+			            magicType : {show: true, type: ['line', 'bar']},
+			            restore : {show: true},
+			            saveAsImage : {show: true}
+			        }
+			    },
+			    calculable : true,
+			    xAxis : [
+			        {
+			            type : 'category',
+			            data : {{ date|safe }}
+			        }
+			    ],
+			    yAxis : [
+			        {
+			            type : 'value'
+			        }
+			    ],
+			    series : [
+			        {
+			            name:'原创',
+			            type:'bar',
+			            data:{{ count_original_readNum_list|safe }},
+			            markPoint : {
+			                data : [
+			                    {type : 'max', name: '最大值'},
+			                    {type : 'min', name: '最小值'}
+			                ]
+			            },
+			            markLine : {
+			                data : [
+			                    {type : 'average', name: '平均值'}
+			                ]
+			            },
+                        itemStyle: {
+			                barBorderRadius: 1,
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: '#CC0000'
+                            }, {
+                                offset: 1,
+                                color: '#AAAAAA'
+                            }]),
+                            shadowColor: 'rgba(0, 0, 0, 0.4)',
+                            shadowBlur: 20
+                        },
+			        },
+			        {
+			            name:'转载',
+			            type:'bar',
+			            data:{{ count_reprint_readNum_list|safe }},
+			            markPoint : {
+			                data : [
+			                    {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183, symbolSize:18},
+			                    {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+			                ]
+			            },
+			            markLine : {
+			                data : [
+			                    {type : 'average', name : '平均值'}
+			                ]
+			            },
+                        itemStyle: {
+			                barBorderRadius: 1,
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: '#002200'
+                            }, {
+                                offset: 1,
+                                color: '#AAAAAA'
+                            }]),
+                            shadowColor: 'rgba(0, 0, 0, 0.4)',
+                            shadowBlur: 20
+                        },
+			        }
+			    ]
+			};
+			                    
+			myChart.setOption(option);
+		</script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+				$("#tab_a1").click(function(){
+					$("#tab_l1").addClass("active");
+					$("#tab_l2").removeClass();
+					$("#tab_l3").removeClass();
+					$("#tab_l4").removeClass();
+			    		$("#box_chart1").show();
+			    		$("#box_chart2").hide();
+			    		$("#box_chart3").hide();
+			    		$("#box_chart4").hide();
+			  	});
+
+			  	$("#tab_a2").click(function(){
+			  		$("#tab_l1").removeClass();
+					$("#tab_l2").addClass("active");
+					$("#tab_l3").removeClass();
+					$("#tab_l4").removeClass();
+			    		$("#box_chart1").hide();
+			    		$("#box_chart2").show();
+			    		$("#box_chart3").hide();
+			    		$("#box_chart4").hide();
+			    		var myChart = echarts.init(document.getElementById('box_chart2'));
+			    		option = {
+                        title : {
+                            text: '文章类型点赞量',
+                            subtext: '原创/转载'
+                        },
+                        tooltip : {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data:['原创', '转载']
+                        },
+                        toolbox: {
+                            show : true,
+                            feature : {
+                                mark : {show: true},
+                                dataView : {show: true, readOnly: false},
+                                magicType : {show: true, type: ['line', 'bar']},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        calculable : true,
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : {{ date|safe }}
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value'
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'原创',
+                                type:'bar',
+                                data:{{ count_original_likeNum_list|safe }},
+                                markPoint : {
+                                    data : [
+                                        {type : 'max', name: '最大值'},
+                                        {type : 'min', name: '最小值'}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name: '平均值'}
+                                    ]
+                                },
+                                itemStyle: {
+                                    barBorderRadius: 1,
+                                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: '#CC0000'
+                                    }, {
+                                        offset: 1,
+                                        color: '#AAAAAA'
+                                    }]),
+                                    shadowColor: 'rgba(0, 0, 0, 0.4)',
+                                    shadowBlur: 20
+                                },
+                            },
+                            {
+                                name:'转载',
+                                type:'bar',
+                                data:{{ count_reprint_likeNum_list|safe }},
+                                markPoint : {
+                                    data : [
+                                        {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183, symbolSize:18},
+                                        {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name : '平均值'}
+                                    ]
+                                },
+                                itemStyle: {
+                                    barBorderRadius: 1,
+                                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: '#002200'
+                                    }, {
+                                        offset: 1,
+                                        color: '#AAAAAA'
+                                    }]),
+                                    shadowColor: 'rgba(0, 0, 0, 0.4)',
+                                    shadowBlur: 20
+                                },
+                            }
+                        ]
+                    };
+
+                    myChart.setOption(option);
+			  	});
+
+			  	$("#tab_a3").click(function(){
+			  		$("#tab_l1").removeClass();
+					$("#tab_l2").removeClass();
+					$("#tab_l3").addClass("active");
+					$("#tab_l4").removeClass();
+					$("#box_chart1").hide();
+                    $("#box_chart2").hide();
+                    $("#box_chart3").show();
+                    $("#box_chart4").hide();
+                    var myChart = echarts.init(document.getElementById('box_chart3'));
+                    option = {
+                        title : {
+                            text: '文章类型评论量',
+                            subtext: '原创/转载'
+                        },
+                        tooltip : {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data:['原创', '转载']
+                        },
+                        toolbox: {
+                            show : true,
+                            feature : {
+                                mark : {show: true},
+                                dataView : {show: true, readOnly: false},
+                                magicType : {show: true, type: ['line', 'bar']},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        calculable : true,
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : {{ date|safe }}
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value'
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'原创',
+                                type:'bar',
+                                data:{{ count_original_comment_list|safe }},
+                                markPoint : {
+                                    data : [
+                                        {type : 'max', name: '最大值'},
+                                        {type : 'min', name: '最小值'}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name: '平均值'}
+                                    ]
+                                },
+                                itemStyle: {
+                                    barBorderRadius: 1,
+                                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: '#CC0000'
+                                    }, {
+                                        offset: 1,
+                                        color: '#AAAAAA'
+                                    }]),
+                                    shadowColor: 'rgba(0, 0, 0, 0.4)',
+                                    shadowBlur: 20
+                                },
+                            },
+                            {
+                                name:'转载',
+                                type:'bar',
+                                data:{{ count_reprint_comment_list|safe }},
+                                markPoint : {
+                                    data : [
+                                        {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183, symbolSize:18},
+                                        {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name : '平均值'}
+                                    ]
+                                },
+                                itemStyle: {
+                                    barBorderRadius: 1,
+                                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: '#002200'
+                                    }, {
+                                        offset: 1,
+                                        color: '#AAAAAA'
+                                    }]),
+                                    shadowColor: 'rgba(0, 0, 0, 0.4)',
+                                    shadowBlur: 20
+                                },
+                            }
+                        ]
+                    };
+
+                    myChart.setOption(option);
+			  	});
+
+			  	$("#tab_a4").click(function(){
+			  		$("#tab_l1").removeClass();
+					$("#tab_l2").removeClass();
+					$("#tab_l3").removeClass();
+					$("#tab_l4").addClass("active");
+			    		$("#box_chart1").hide();
+			    		$("#box_chart2").hide();
+			    		$("#box_chart3").hide();
+			    		$("#box_chart4").show();
+					var myChart = echarts.init(document.getElementById('box_chart4'));
+					option = {
+                        title : {
+                            text: '文章类型发文量',
+                            subtext: '原创/转载'
+                        },
+                        tooltip : {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data:['原创', '转载']
+                        },
+                        toolbox: {
+                            show : true,
+                            feature : {
+                                mark : {show: true},
+                                dataView : {show: true, readOnly: false},
+                                magicType : {show: true, type: ['line', 'bar']},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        calculable : true,
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : {{ date|safe }}
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value'
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'原创',
+                                type:'bar',
+                                data:{{ count_original_paper_list|safe }},
+                                markPoint : {
+                                    data : [
+                                        {type : 'max', name: '最大值'},
+                                        {type : 'min', name: '最小值'}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name: '平均值'}
+                                    ]
+                                },
+                                itemStyle: {
+                                    barBorderRadius: 1,
+                                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: '#CC0000'
+                                    }, {
+                                        offset: 1,
+                                        color: '#AAAAAA'
+                                    }]),
+                                    shadowColor: 'rgba(0, 0, 0, 0.4)',
+                                    shadowBlur: 20
+                                },
+                            },
+                            {
+                                name:'转载',
+                                type:'bar',
+                                data:{{ count_reprint_paper_list|safe }},
+                                markPoint : {
+                                    data : [
+                                        {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183, symbolSize:18},
+                                        {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name : '平均值'}
+                                    ]
+                                },
+                                itemStyle: {
+                                    barBorderRadius: 1,
+                                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: '#002200'
+                                    }, {
+                                        offset: 1,
+                                        color: '#AAAAAA'
+                                    }]),
+                                    shadowColor: 'rgba(0, 0, 0, 0.4)',
+                                    shadowBlur: 20
+                                },
+                            }
+                        ]
+                    };
+					myChart.setOption(option);
+
+
+			  	});
+		    });
+        </script>
+	</body>
+
+</html>

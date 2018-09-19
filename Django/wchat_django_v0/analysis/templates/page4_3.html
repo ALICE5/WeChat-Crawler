@@ -1,0 +1,497 @@
+{% load static %}
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>情感分析</title>
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href={% static "css/homepage.css" %}>
+		<link rel="stylesheet" href={% static "css/index.css" %}>
+		<link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
+		<link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+
+	</head>
+
+	<body>
+		<div class="header">
+			<div id="picture" style="width: 220px;float: left;position: fixed;background-color: rgb(240,240,240);height: 50px;">
+				<a href="/cover" >
+					<img src={% static "img/chinaunicom.png" %}/>
+				</a>
+			</div>
+			<div style="height: 40px;margin-top:5px;width: 2px;background-color: rgb(100,100,100);float: left;margin-left: 220px;"></div>
+			<div style="height: 20px;margin-left:20px;margin-top:15px;width: 150px;float: left;">
+				<p style="font-size: 16px;">微信公众号数据分析</p>
+			</div>
+			<div class="header_table">
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)"><i class="glyphicon glyphicon-ok-circle"></i>&nbsp;&nbsp;创造404</a>
+				</div>
+				<div style="height: 40px;width: 2px;background-color: rgb(100,100,100);margin-left: 5%;margin-right: 5%;"></div>
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)">我的应用</a>
+				</div>
+				<div style="height: 40px;width: 2px;background-color: rgb(100,100,100);margin-left: 5%;margin-right: 5%;"></div>
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)">分析报表</a>
+				</div>
+			</div>
+		</div>
+		<div style="height: 0px;width: 220px;background-color: rgba(40,240,240,0);"></div>
+		<div id="wrapper" class="toggled">
+			
+			<div class="overlay" style="display: block;"></div>
+			<!-- Sidebar -->
+			<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+				<ul class="nav sidebar-nav">
+					<li class="sidebar-brand" style="height: 40px;">
+						<a href="/page1_1" style="height: 40px; font-size: 18px;">
+							<div style="color: #FFFFFF;margin-top: -10px;text-align: center;">情感分析</div>
+						</a>
+					</li>
+
+					<li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home"></i>&nbsp; 运营数据概览 <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">公众号整体情势预判</li>
+							<li>
+								<a href="/page1_1">近7日数据</a>
+							</li>
+							<li>
+								<a href="/page1_2">历史趋势</a>
+							</li>
+						</ul>
+					</li>
+                    <li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-signal"></i>&nbsp; 内容质量分析 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">数据对比</li>
+
+							<li>
+								<a href="/page3_1">文章类型分析</a>
+							</li>
+							<li>
+								<a href="/page3_2">TOP10文章榜单</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-list"></i>&nbsp; 作者影响力分析 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">发现大V</li>
+
+							<li>
+								<a href="/page2_2">月度榜单</a>
+							</li>
+							<li>
+								<a href="/page2_3">年度榜单</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="open">
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>&nbsp; 舆情监控 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">智能语义分析+危机传播管理</li>
+							<li>
+								<a href="/page4_1">标题热词</a>
+							</li>
+							<li>
+								<a href="/page4_2">精选评论热词</a>
+							</li>
+                            <li>
+								<a href="/page4_3" style="color: rgba(255,11,11,0.9);">情感分析</a>
+							</li>
+						</ul>
+					</li>
+					
+				</ul>
+			</nav>
+			<!-- /#sidebar-wrapper -->
+
+			<!-- Page Content -->
+			<div id="page-content-wrapper">
+				<div class="headbar">
+					<button type="button" class="hamburger is-open animated fadeInLeft" data-toggle="offcanvas">
+            				<span class="hamb-top"></span>
+						<span class="hamb-middle"></span>
+						<span class="hamb-bottom"></span>
+					</button>
+					<ul class="header_table2">
+						<li><a href="/app_view">应用概览</a></li>
+						<li class="active"><a href="javascript:void(0)">基础分析</a></li>
+						<li><a href="/contact_us">关于我们</a></li>
+					</ul>
+				</div>
+				<!--start of 内容页面-->
+				<div class="container">
+					<div class="box">
+						<div class="box">
+	  						<div style="width: 105px;background-color: rgba(255,0,0,.8);height: 40px;padding-top: 1px;padding-left: 25px;">
+	  							<h5 style="color: rgba(255,255,255,1);">情感分析</h5>
+	  						</div>	
+						</div>
+					</div>
+					<div class="box">
+						<!--导航条-->
+						
+						<!--图表区域-->
+						<div id="chart" style="width: 100%;height: auto;">
+
+							<div class="box" id="box_chart1" style="height: 400px;display: block;background-color: rgba(245,245,245,0.6)">	</div>
+{#							<div class="box" style="display: flex;border-style: none;">#}
+{#								<div style="height: 20px;width: 2px;background-color: rgb(0,0,0);margin-left: 1%;margin-right: 1%;"></div>#}
+{#								<p>&nbsp;&nbsp;&nbsp;详情数据</p>#}
+{#							</div>#}
+                            <div class="box" style="display: flex;justify-content: center;">
+                                <h4>情感值 ：越接近1表示正面情绪，越接近0表示负面情绪。</h4>
+                            </div>
+                            <div class="box" id="container2" style="height: 400px;display: none;">	</div>
+                            <div class="box" id="container3" style="height: 550px;display: block;background-color: rgba(245,245,245,0.6)">	</div>
+                            <div class="box">
+                                <div style="width: 105px;background-color: rgba(255,0,0,.8);height: 40px;padding-top: 1px;padding-left: 25px;">
+                                    <h5 style="color: rgba(255,255,255,1);">详情数据</h5>
+                                </div>
+                            </div>
+							<div class="box" style="height: 440px;background-color: rgba(234,234,234,0.9)">
+								<table id="table">
+								</table>
+							</div>
+							<div class="box" style="display: flex;border-style: none;">
+								<div style="height: 20px;width: 2px;background-color: rgba(0,0,0,0);margin-left: 1%;margin-right: 1%;"></div>
+							</div>
+						</div>
+					</div>
+					
+					<!--制作人-->
+					<div class="box" style="border-style: none;display: flex;justify-content: center;background-color: rgba(0,0,0,0);">
+						<div class="inner">
+							<p>Data Analyzed for
+								<a href="javascript:void(0)">新华社</a>, by
+								<a href="javascript:void(0)">@创造404</a>.</p>
+						</div>
+					</div>
+				</div>
+				<!--end of 内容页面-->
+			</div>
+		<!-- /#page-content-wrapper -->
+		</div>
+		<!-- /#wrapper -->
+
+		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+		<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+		<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts-en.js"></script>
+		<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+		<script src={% static "js/table4_3.js" %} type="text/javascript" charset="utf-8"></script>
+		<!--侧边栏效果-->
+		<script src={% static "js/slider_bar.js" %} type="text/javascript" charset="utf-8"></script>
+		<!--highcharts 图表1-->
+		<script type="text/javascript">
+
+			console.log("饼图")
+			console.log({{pie|safe}})
+            console.log()
+			console.log("折线图")
+			console.log({{line|safe}})
+            console.log({{ x|safe }})
+            console.log({{ y|safe }})
+            var x_pies = {{ x|safe }}
+            var y_pies = {{ y|safe }}
+
+
+{#            {% for item in pie %}#}
+{#                pies.push({{ item|safe }})#}
+{#            {% endfor %}#}
+{#            console.log(pies)#}
+
+
+            var dom = document.getElementById("box_chart1");
+			var myChart = echarts.init(dom);
+			var app = {};
+			option = null;
+			{#app.title = '嵌套环形图';#}
+
+			option = {
+				tooltip: {
+					trigger: 'item',
+					formatter: "{a} <br/>{b}: {c} ({d}%)"
+				},
+                title: {
+                    text: '情感极性占比',
+                    subtext: '情感倾向（消极<---->积极️）'
+                },
+                color:['#084B75','#1B6ED4','#55A7F5','#99D0EC','#F7F176','#F6C33C','#EC8F46','#D57164','#B83434','#7E2423'],
+				legend: {
+					orient: 'vertical',
+					x: 'left',
+                    y: 'center',
+					data: {{ x|safe }}
+				},
+				series: [{
+                    name: '情感分析',
+                    type: 'pie',
+                    selectedMode: 'single',
+                    radius: ['50%', '85%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        normal: {
+                            textStyle: {
+                                color: 'rgba(0, 0, 0, 0.8)'
+                            },
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '18',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false,
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            shadowBlur: 200,
+                            shadowColor: 'rgba(50, 50, 50, 0.5)'
+                        }
+                    },
+                    data: [{
+                        value: y_pies[0],
+                        name: x_pies[0],
+                        selected: true,
+
+                        },
+                        {
+                            value: y_pies[1],
+                            name: x_pies[1]
+                        },
+                        {
+                            value: y_pies[2],
+                            name: x_pies[2]
+                        },
+                        {
+                            value: y_pies[3],
+                            name: x_pies[3]
+                        },
+                        {
+                            value: y_pies[4],
+                            name:x_pies[4]
+                        },
+                        {
+                            value: y_pies[5],
+                            name: x_pies[5]
+                        },
+                        {
+                            value: y_pies[6],
+                            name: x_pies[6]
+                        },
+                        {
+                            value: y_pies[7],
+                            name: x_pies[7]
+                        },
+                        {
+                            value: y_pies[8],
+                            name: x_pies[8]
+                        },
+                        {
+                            value: y_pies[9],
+                            name: x_pies[9]
+                        }]
+					}]};
+			if(option && typeof option === "object") {
+				myChart.setOption(option, true);
+			}
+
+			//折线图
+            var dateList = {{ x_bar|safe }}
+            var valueList = {{ y_bar|safe }}
+            var dom = document.getElementById("container2");
+            var myChart = echarts.init(dom);
+            var app = {};
+            option = null;
+            option = {
+                // Make gradient line here
+                 toolbox: {
+                    left: 'right',
+                    feature: {
+                    dataZoom: {
+                    yAxisIndex: 'none'
+                    },
+                    restore: {},
+                    saveAsImage: {}
+                    }
+                },
+                visualMap: {
+                    show: false,
+                    {#type: 'continuous',#}
+                    type:'piecewise',
+                    seriesIndex: 0,
+                    pieces: [{
+                        gt: 0.5,
+                        lte: 0.6,
+                        color: '#660099',
+                        width:3
+                    }, {
+                        gt: 0.6,
+                        lte: 0.7,
+                        color: '#ffde33',
+                        width:3
+                    }, {
+                        gt: 0.7,
+                        lte: 0.8,
+                        color: '#ff9933',
+                        width:3
+                    }, {
+                        gt: 0.8,
+                        lte: 0.9,
+                        color: '#cc0033',
+                        width:3
+                    }, {
+                        gt: 0.9,
+                        color: '#096',
+                        width:3
+                    }],
+                    outOfRange: {
+                        color: '#999',
+                        width:3
+                    }},
+                title: {
+                    left: 'center',
+                    text: '2018年3月-2018年8月 日均情感走势'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    data: dateList,
+                },
+                yAxis: {
+                    splitLine: {show: false},
+                    min: 0.5,
+                    max: 0.9
+                },
+                grid: [{
+                    bottom: '10%'
+                }, {
+                    top: '20%'
+                }],
+                series: {
+                    type: 'line',
+                    showSymbol: false,
+                    data: valueList,
+
+                }};;
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+
+
+
+
+            var dom = document.getElementById("container3");
+            var myChart = echarts.init(dom);
+            var app = {};
+            option = null;
+            option = {
+                    title: {
+                        left:"center",
+                        text: '日均情感走势',
+                        subtext:' 近半年(2018.3-2018.8)日均情感走势'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: {
+                        data: dateList
+                    },
+                    yAxis: {
+                        splitLine: {
+                            show: false
+                        },
+                        max: 0.9,
+                        min: 0.5
+                    },
+                    toolbox: {
+                        right:10,
+                        left: '70%',
+                        feature: {
+                            dataZoom: {
+                                yAxisIndex: 'none'
+                            },
+                            restore: {},
+                            saveAsImage: {}
+                        }
+                    },
+                    dataZoom: [{
+                        startValue: '2018-03-02'
+                    }, {
+                        type: 'inside'
+                    }],
+                    visualMap: {
+                        left:'right',
+                        top: 10,
+                        left: "80%",
+                        precision:1,
+                        pieces: [{
+                            gt: 0.5,
+                            lte: 0.6,
+                            color: '#096'
+                        }, {
+                            gt: 0.6,
+                            lte: 0.7,
+                            color: '#ffde33'
+                        }, {
+                            gt: 0.7,
+                            lte: 0.8,
+                            color: '#ff9933'
+                        }, {
+                            gt: 0.8,
+                            lte: 0.9,
+                            color: '#cc0033'
+                        }, {
+                            gt: 0.9,
+                            color: '#660099'
+                        }],
+                        outOfRange: {
+                            color: '#999'
+                        }
+                    },
+                    series: {
+                        name: '日均情感走势',
+                        type: 'line',
+                        data: valueList,
+                        markLine: {
+                            silent: true,
+                            data: [{
+                                yAxis: 0.55
+                            }, {
+                                yAxis: 0.6
+                            }, {
+                                yAxis: 0.65
+                            }, {
+                                yAxis: 0.7
+                            }, {
+                                yAxis: 0.8
+                            }]}}
+            };;
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+			                    
+
+		</script>
+		
+	</body>
+
+</html>

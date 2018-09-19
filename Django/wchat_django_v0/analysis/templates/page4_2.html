@@ -1,0 +1,286 @@
+{% load static %}
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>热词对比</title>
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href={% static "css/homepage.css" %}>
+		<link rel="stylesheet" href={% static "css/index.css" %}>
+		<link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
+		<link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+
+	</head>
+
+	<body>
+		<div class="header">
+			<div id="picture" style="width: 220px;float: left;position: fixed;background-color: rgb(240,240,240);height: 50px;">
+				<a href="/cover" >
+					<img src={% static "img/chinaunicom.png" %}/>
+				</a>
+			</div>
+			<div style="height: 40px;margin-top:5px;width: 2px;background-color: rgb(100,100,100);float: left;margin-left: 220px;"></div>
+			<div style="height: 20px;margin-left:20px;margin-top:15px;width: 150px;float: left;">
+				<p style="font-size: 16px;">微信公众号数据分析</p>
+			</div>
+			<div class="header_table">
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)"><i class="glyphicon glyphicon-ok-circle"></i>&nbsp;&nbsp;创造404</a>
+				</div>
+				<div style="height: 40px;width: 2px;background-color: rgb(100,100,100);margin-left: 5%;margin-right: 5%;"></div>
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)">我的应用</a>
+				</div>
+				<div style="height: 40px;width: 2px;background-color: rgb(100,100,100);margin-left: 5%;margin-right: 5%;"></div>
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)">分析报表</a>
+				</div>
+			</div>
+		</div>
+		<div style="height: 0px;width: 220px;background-color: rgba(40,240,240,0);"></div>
+		<div id="wrapper" class="toggled">
+			
+			<div class="overlay" style="display: block;"></div>
+			<!-- Sidebar -->
+			<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+				<ul class="nav sidebar-nav">
+					<li class="sidebar-brand" style="height: 40px;">
+						<a href="/page1_1" style="height: 40px; font-size: 18px;">
+							<div style="color: #FFFFFF;margin-top: -10px;text-align: center;">精选评论热词</div>
+						</a>
+					</li>
+
+					<li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home"></i>&nbsp; 运营数据概览 <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">公众号整体情势预判</li>
+							<li>
+								<a href="/page1_1">近7日数据</a>
+							</li>
+							<li>
+								<a href="/page1_2">历史趋势</a>
+							</li>
+						</ul>
+					</li>
+                    <li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-signal"></i>&nbsp; 内容质量分析 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">数据对比</li>
+
+							<li>
+								<a href="/page3_1">文章类型分析</a>
+							</li>
+							<li>
+								<a href="/page3_2">TOP10文章榜单</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-list"></i>&nbsp; 作者影响力分析 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">发现大V</li>
+
+							<li>
+								<a href="/page2_2">月度榜单</a>
+							</li>
+							<li>
+								<a href="/page2_3">年度榜单</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="open">
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>&nbsp; 舆情监控 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">智能语义分析+危机传播管理</li>
+							<li>
+								<a href="/page4_1">标题热词</a>
+							</li>
+							<li>
+								<a href="/page4_2" style="color: rgba(255,11,11,0.9);">精选评论热词</a>
+							</li>
+                            <li>
+								<a href="/page4_3">情感分析</a>
+							</li>
+						</ul>
+					</li>
+					
+				</ul>
+			</nav>
+			<!-- /#sidebar-wrapper -->
+
+			<!-- Page Content -->
+			<div id="page-content-wrapper">
+				<div class="headbar">
+					<button type="button" class="hamburger is-open animated fadeInLeft" data-toggle="offcanvas">
+            				<span class="hamb-top"></span>
+						<span class="hamb-middle"></span>
+						<span class="hamb-bottom"></span>
+					</button>
+					<ul class="header_table2">
+						<li><a href="/app_view">应用概览</a></li>
+						<li class="active"><a href="javascript:void(0)">基础分析</a></li>
+						<li><a href="/contact_us">关于我们</a></li>
+					</ul>
+				</div>
+				<!--start of 内容页面-->
+				<div class="container">
+					<div class="box">
+						<div class="box">
+	  						<div style="width: 140px;background-color: rgba(255,0,0,.8);height: 40px;padding-top: 1px;padding-left: 25px;">
+	  							<h5 style="color: rgba(255,255,255,1);">精选评论热词</h5>
+	  						</div>	
+						</div>
+					</div>
+					<div class="box" style="background-color: #FFFFFF">
+						<!--导航条-->
+						<div class="box">
+                            <h4 style="width: 100%; text-align: center;background-color: #FFFFFF;padding-top:20px;height: 50px"> 评论热词热力榜 </h4>
+
+                            <img src={% static "img/WechatIMG1995.jpeg" %} style="width:100%">
+                            <div id="box_chart1" class="box" style="height: 700px;background-color: #EEEEEE;padding-bottom: 20px"></div>
+                            <div class="box" style="height: 20px"></div>
+
+
+                        </div>
+
+						<!--图表区域-->
+
+					</div>
+					
+					<!--制作人-->
+					<div class="box" style="border-style: none;display: flex;justify-content: center;background-color: rgba(0,0,0,0);">
+						<div class="inner">
+							<p>Data Analyzed for
+								<a href="javascript:void(0)">新华社</a>, by
+								<a href="javascript:void(0)">@创造404</a>.</p>
+						</div>
+					</div>
+				</div>
+				<!--end of 内容页面-->
+			</div>
+		<!-- /#page-content-wrapper -->
+		</div>
+		<!-- /#wrapper -->
+
+		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+		<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+		<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts-en.js"></script>
+		<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+		<script src={% static "js/table4_2.js" %} type="text/javascript" charset="utf-8"></script>
+		<!--侧边栏效果-->
+		<script src={% static "js/slider_bar.js" %} type="text/javascript" charset="utf-8"></script>
+		<!--highcharts 图表1-->
+		<script src={% static "js/echarts-gl.js" %} type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+			var myChart = echarts.init(document.getElementById('box_chart1'));
+			var hours = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
+			var days = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' '];
+
+			var data =[[0, 0, 0.013770037981297948, '好人'], [0, 1, 0.010164420891038674, '母亲'], [0, 2, 0.00830233941971858, '经历'], [0, 3, 0.010616882355598219, '父亲'], [0, 4, 0.010958354260822272, '问题'], [0, 5, 0.05352743776791962, '爱心'], [0, 6, 0.057425717850698534, '孩子'], [0, 7, 0.008709401000651602, '东西'], [0, 8, 0.010561684852051695, '学生'], [0, 9, 0.01902025358512581, '工作'], [1, 0, 0.009036927553439676, '榜样'], [1, 1, 0.02745032071939509, '天下事'], [1, 2, 0.009426109837773094, '历史'], [1, 3, 0.05559515767417175, '流泪'], [1, 4, 0.019312642903662296, '祝福'], [1, 5, 0.02766333081756394, '人生'], [1, 6, 0.013150432631402482, '家乡'], [1, 7, 0.007877253297428808, '胜利'], [1, 8, 0.013704007970102147, '毕业'], [1, 9, 0.010076794177920099, '皱眉'], [2, 0, 0.017584659059670535, '调皮'], [2, 1, 0.009990793441402005, '身体'], [2, 2, 0.010701571774173189, '精神'], [2, 3, 0.007999678119443852, '责任'], [2, 4, 0.011138801532431119, '同学'], [2, 5, 0.024831525852155274, '早安'], [2, 6, 0.02703910847392069, '世界'], [2, 7, 0.014742505664224819, '白眼'], [2, 8, 0.0353604351459382, '妈妈'], [2, 9, 0.014582131174038853, '朋友'], [3, 0, 0.008564299524477634, '老公'], [3, 1, 0.015238602185415995, '社会'], [3, 2, 0.021102934280109, '时代'], [3, 3, 0.0098221709316353, '视频'], [3, 4, 0.019327947974956496, '梦想'], [3, 5, 0.00949714907503004, '事情'], [3, 6, 0.009992458140246043, '地方'], [3, 7, 0.009169293683158334, '地震'], [3, 8, 0.008124092575571368, '味道'], [3, 9, 0.014236337642520677, '家长'], [4, 0, 0.008255135767698757, '晚安'], [4, 1, 0.011681002361045687, '棒棒'], [4, 2, 0.010468054866215399, '司机'], [4, 3, 0.02737139510359186, '老师'], [4, 4, 0.031708487091511486, '拳头'], [4, 5, 0.010927077807802416, '爸妈'], [4, 6, 0.013391952006864376, '时间'], [4, 7, 0.011191771781374595, '乡愁'], [4, 8, 0.010696189278060412, '美丽'], [4, 9, 0.016162937979102593, '大学'], [5, 0, 0.011579133962012654, '篇文章'], [5, 1, 0.009620508324645036, '微信'], [5, 2, 0.00843275998029385, '结果'], [5, 3, 0.012030051681567016, '自豪'], [5, 4, 0.024104036421625022, '大家'], [5, 5, 0.0128522239305728, '太阳'], [5, 6, 0.01787476796184119, '青春'], [5, 7, 0.020276866826139307, '新闻'], [5, 8, 0.03154042727650566, '时候'], [5, 9, 0.021196565787981448, '国家'], [6, 0, 0.06852421979569678, '微笑'], [6, 1, 0.03319033870817132, '谢谢'], [6, 2, 0.11261415679061519, '玫瑰'], [6, 3, 0.008651982460909598, '家庭'], [6, 4, 0.013133091100838766, '爸爸'], [6, 5, 0.008663316668420155, '儿子'], [6, 6, 0.010322613668966025, '家人'], [6, 7, 0.016311309603261995, '初心'], [6, 8, 0.01085560946350549, '长大'], [6, 9, 0.015946780004269755, '军人'], [7, 0, 0.019455430108602297, '生命'], [7, 1, 0.014422538494385288, '学校'], [7, 2, 0.008858764059782002, '小哥'], [7, 3, 0.02505552468107979, '机智'], [7, 4, 0.011899170143581184, '教育'], [7, 5, 0.007966295281802623, '记忆'], [7, 6, 0.009324672724170159, '考研'], [7, 7, 0.02332898213752243, '感觉'], [7, 8, 0.01858236413036357, '小时候'], [7, 9, 0.013716368304444409, '小编'], [8, 0, 0.008004707540037926, '习惯'], [8, 1, 0.026976175297348335, '父母'], [8, 2, 0.033930804710462684, '生活'], [8, 3, 0.013773964675105095, '文章'], [8, 4, 0.02502173826212213, '英雄'], [8, 5, 0.00801358741735192, '力量'], [8, 6, 0.048521548486014775, '人民'], [8, 7, 0.015686988376414513, '手机'], [8, 8, 0.01746579854820391, '回家'], [8, 9, 0.009753996300588976, '大国'], [9, 0, 0.009182994525027648, '老人'], [9, 1, 0.051466301756590206, '祖国'], [9, 2, 0.04952025695753972, '中国'], [9, 3, 0.01253863956334956, '医生'], [9, 4, 0.008380155868017623, '主席'], [9, 5, 0.012563640739513647, '朋友圈'], [9, 6, 0.010288647949962391, '陪伴'], [9, 7, 0.024446571512785443, '能量'], [9, 8, 0.008403136442718277, '发展'], [9, 9, 0.009838343734291589, '子弟兵']];
+			var data1 =['感觉', '司机', '祖国', '记忆', '太阳', '爸爸', '机智', '胜利', '早安', '同学', '棒棒', '学校', '军人', '时候', '好人', '主席', '青春', '时代', '中国', '榜样', '地震', '工作', '自豪', '父亲', '天下事', '医生', '毕业', '拳头', '责任', '人生', '时间', '流泪', '发展', '微信', '历史', '小编', '美丽', '经历', '精神', '乡愁', '东西', '身体', '教育', '生活', '孩子', '人民', '回家', '家长', '地方', '长大', '味道', '梦想', '母亲', '陪伴', '朋友', '微笑', '白眼', '英雄', '社会', '篇文章', '祝福', '世界', '家人', '国家', '能量', '父母', '大家', '新闻', '朋友圈', '老公', '调皮', '大学', '手机', '大国', '小哥', '爸妈', '力量', '初心', '习惯', '生命', '学生', '文章', '晚安', '小时候', '子弟兵', '考研', '家乡', '爱心', '谢谢', '玫瑰', '老师', '老人', '家庭', '结果', '皱眉', '妈妈', '事情', '问题', '儿子', '视频'];
+			option = {
+			    title : {
+                    text: '热词分布榜',
+                    x: "center"
+                },
+				toolbox: {
+			        show: true,
+			        orient: 'vertical',
+			        left: 'right',
+			        top: 'center',
+			        feature: {
+			            mark: {show: true},
+			            dataView: {show: true, readOnly: false},
+			            restore: {show: true},
+			            saveAsImage: {show: true}
+			        }
+			    },
+			    legend: {
+			    		orient: 'vertical',
+        				left: 'left',
+        				data: data1
+			    },
+			    tooltip: {},
+			    visualMap: {
+			        max: 0.075,
+			        inRange: {
+			            color: [ '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43']
+			        }
+			    },
+			    xAxis3D: {
+			        type: 'category',
+			        data: hours
+			    },
+			    yAxis3D: {
+			        type: 'category',
+			        data: days
+			    },
+			    zAxis3D: {
+			        type: 'value'
+			    },
+			    grid3D: {
+			        boxWidth: 120,
+			        boxDepth: 105,
+                    boxHeight: 80,
+			        viewControl: {
+			            // projection: 'orthographic'
+			        },
+			        light: {
+			            main: {
+			                intensity: 1.2,
+                            quality: 'ultra',
+			                shadow: true
+			            },
+			            ambient: {
+			                intensity: 0.3
+			            }
+			        }
+			    },
+			    series: [{
+			        type: 'bar3D',
+			        data: data.map(function (item) {
+			            return {
+			                value: [item[1], item[0], item[2]],
+			                name: [item[3]],
+			            }
+			        }),
+
+			        shading: 'lambert',
+
+			        label: {
+			            normal: {
+			                show: false,
+                            formatter: '{b}',
+                        },
+			            textStyle: {
+			                fontSize: 16,
+			                borderWidth: 1
+			            }
+			        },
+
+			        emphasis: {
+			            label: {
+			                textStyle: {
+			                    fontSize: 20,
+			                    color: '#900'
+			                }
+			            },
+			            itemStyle: {
+			                color: '#900'
+			            }
+			        }
+			    }]
+			}
+			myChart.setOption(option);
+		</script>
+		
+	</body>
+
+</html>

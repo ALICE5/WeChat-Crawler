@@ -1,0 +1,164 @@
+{% load static %}
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>homepage</title>
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href={% static "css/homepage.css" %}>
+		<link rel="stylesheet" href={% static "css/index.css" %}>
+		<link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
+		<link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style type="text/css">
+			.header{
+				position: fixed;
+			}
+			.headbar{
+				position: fixed;
+				top: 50px;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="header">
+			<div id="picture" style="width: 220px;float: left;position: fixed;background-color: rgb(240,240,240);height: 50px;">
+				<a href="/cover" >
+					<img src={% static "img/chinaunicom.png" %}/>
+				</a>
+			</div>
+			<div style="height: 40px;margin-top:5px;width: 2px;background-color: rgb(100,100,100);float: left;margin-left: 220px;"></div>
+			<div style="height: 20px;margin-left:20px;margin-top:15px;width: 150px;float: left;">
+				<p style="font-size: 16px;">微信公众号数据分析</p>
+			</div>
+			<div class="header_table">
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)"><i class="glyphicon glyphicon-ok-circle"></i>&nbsp;&nbsp;创造404</a>
+				</div>
+				<div style="height: 40px;width: 2px;background-color: rgb(100,100,100);margin-left: 5%;margin-right: 5%;"></div>
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)">我的应用</a>
+				</div>
+				<div style="height: 40px;width: 2px;background-color: rgb(100,100,100);margin-left: 5%;margin-right: 5%;"></div>
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)">分析报表</a>
+				</div>
+			</div>
+		</div>
+		<div style="height: 0px;width: 220px;background-color: rgba(240,240,240,0);"></div>
+		<div id="wrapper" class="toggled">
+			
+			<div class="overlay" style="display: block;"></div>
+			<!-- Sidebar -->
+			<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+				<ul class="nav sidebar-nav">
+					<li class="sidebar-brand" style="height: 40px;">
+						<a href="javascript:void(0)" style="height: 40px; font-size: 18px;">
+							<div style="color: #FFFFFF;margin-top: -10px;text-align: center;">公众号分析</div>
+						</a>
+					</li>
+
+					<li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home"></i>&nbsp; 运营数据概览 <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">公众号整体情势预判</li>
+							<li>
+								<a href="/page1_1">近7日数据</a>
+							</li>
+							<li>
+								<a href="/page1_2">历史趋势</a>
+							</li>
+						</ul>
+					</li>
+                    <li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-signal"></i>&nbsp; 内容质量分析 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">数据对比</li>
+
+							<li>
+								<a href="/page3_1">文章类型分析</a>
+							</li>
+							<li>
+								<a href="/page3_2">TOP10文章榜单</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-list"></i>&nbsp; 作者影响力分析 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">发现大V</li>
+
+							<li>
+								<a href="/page2_2">月度榜单</a>
+							</li>
+							<li>
+								<a href="/page2_3">年度榜单</a>
+							</li>
+						</ul>
+					</li>
+
+					<li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>&nbsp; 舆情监控 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">智能语义分析+危机传播管理</li>
+							<li>
+								<a href="/page4_1">标题热词</a>
+							</li>
+							<li>
+								<a href="/page4_2">精选评论热词</a>
+							</li>
+                            <li>
+								<a href="/page4_3">情感分析</a>
+							</li>
+						</ul>
+					</li>
+					
+				</ul>
+			</nav>
+			<!-- /#sidebar-wrapper -->
+
+			<!-- Page Content -->
+			<div id="page-content-wrapper" style="height: 40px;">
+				<div class="headbar">
+					<ul class="header_table2" style="margin-left: 15%;">
+						<li class="active"><a href="/app_view">应用概览</a></li>
+						<li><a href="/page1_1">基础分析</a></li>
+						<li><a href="/contact_us">关于我们</a></li>
+					</ul>
+				</div>
+				<!--start of 内容页面-->
+				
+				<!--end of 内容页面-->
+				
+			</div>
+		<!-- /#page-content-wrapper -->
+		</div>
+		<div style="position: absolute;left: 270px;width: 80%;height: auto;z-index: 2;top: 100px;display:flex;justify-content: space-around;">
+				<div style="width: 32%;height: auto;"><img src={% static "img/WechatIMG3.png" %} style="width: 100%;height: auto;"/></div>
+				<!--<div style="width: 24.8%;height: auto;"><img src="img/WechatIMG4.png" style="width: 100%;height: auto;"/></div>-->
+				<div style="width: 32%;height: auto;"><img src={% static "img/WechatIMG5.png" %} style="width: 100%;height: auto;"/></div>
+				<div style="width: 32%;height: auto;"><img src={% static "img/WechatIMG6.png" %} style="width: 100%;height: auto;"/></div>
+		</div>
+		<div style="position: fixed;left: 220px;right:0px ;width: auto;height: 100%;background: rgba(234,234,234,1);z-index: 0;top: 0px;bottom:0px;display:flex;justify-content: space-between;">
+		</div>
+		<!-- /#wrapper -->
+
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+		<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+		<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts-en.common.js"></script>
+		<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+		<script src={% static "js/table1_1.js" %} type="text/javascript" charset="utf-8"></script>
+		<!--侧边栏效果-->
+		<script src={% static "js/slider_bar1.js" %} type="text/javascript" charset="utf-8"></script>
+		<!--Tab切换-->
+		<script src={% static "js/tab_click1-1.js" %} type="text/javascript" charset="utf-8"></script>
+		
+	</body>
+		
+</html>

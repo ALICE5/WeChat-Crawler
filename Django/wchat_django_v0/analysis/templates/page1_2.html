@@ -1,0 +1,410 @@
+{% load static %}
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>历史趋势</title>
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href={% static "css/homepage.css" %}>
+		<link rel="stylesheet" href={% static "css/index.css" %}>
+		<link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
+		<link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href={% static "css/time_bar.css" %}/>
+		
+
+	</head>
+
+	<body>
+		<div class="header">
+			<div id="picture" style="width: 220px;float: left;position: fixed;background-color: rgb(240,240,240);height: 50px;">
+				<a href="/cover" >
+					<img src={% static "img/chinaunicom.png" %}/>
+				</a>
+			</div>
+			<div style="height: 40px;margin-top:5px;width: 2px;background-color: rgb(100,100,100);float: left;margin-left: 220px;"></div>
+			<div style="height: 20px;margin-left:20px;margin-top:15px;width: 150px;float: left;">
+				<p style="font-size: 16px;">微信公众号数据分析</p>
+			</div>
+			<div class="header_table">
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)"><i class="glyphicon glyphicon-ok-circle"></i>&nbsp;&nbsp;创造404</a>
+				</div>
+				<div style="height: 40px;width: 2px;background-color: rgb(100,100,100);margin-left: 5%;margin-right: 5%;"></div>
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)">我的应用</a>
+				</div>
+				<div style="height: 40px;width: 2px;background-color: rgb(100,100,100);margin-left: 5%;margin-right: 5%;"></div>
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)">分析报表</a>
+				</div>
+			</div>
+		</div>
+		<div style="height: 0px;width: 220px;background-color: rgba(40,240,240,0);"></div>
+		<div id="wrapper" class="toggled">
+			
+			<div class="overlay" style="display: block;"></div>
+			<!-- Sidebar -->
+			<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+				<ul class="nav sidebar-nav">
+					<li class="sidebar-brand" style="height: 40px;">
+						<a href="/page1_1" style="height: 40px; font-size: 18px;">
+							<div style="color: #FFFFFF;margin-top: -10px;text-align: center;">历史趋势</div>
+						</a>
+					</li>
+
+					<li class="open" id="li1">
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home"></i>&nbsp; 运营数据概览 <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">公众号整体情势预判</li>
+							<li>
+								<a href="/page1_1">近7日数据</a>
+							</li>
+							<li>
+								<a href="/page1_2" style="color: rgba(255,11,11,0.9);">历史趋势</a>
+							</li>
+						</ul>
+					</li>
+                    <li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-signal"></i>&nbsp; 内容质量分析 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">数据对比</li>
+
+							<li>
+								<a href="/page3_1">文章类型分析</a>
+							</li>
+							<li>
+								<a href="/page3_2">TOP10文章榜单</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-list"></i>&nbsp; 作者影响力分析 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">发现大V</li>
+
+							<li>
+								<a href="/page2_2">月度榜单</a>
+							</li>
+							<li>
+								<a href="/page2_3">年度榜单</a>
+							</li>
+						</ul>
+					</li>
+
+					<li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>&nbsp; 舆情监控 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">智能语义分析+危机传播管理</li>
+							<li>
+								<a href="/page4_1">标题热词</a>
+							</li>
+							<li>
+								<a href="/page4_2">精选评论热词</a>
+							</li>
+                            <li>
+								<a href="/page4_3">情感分析</a>
+							</li>
+						</ul>
+					</li>
+			</nav>
+			<!-- /#sidebar-wrapper -->
+
+			<!-- Page Content -->
+			<div id="page-content-wrapper">
+				<div class="headbar">
+					<button type="button" class="hamburger is-open animated fadeInLeft" data-toggle="offcanvas">
+            				<span class="hamb-top"></span>
+						<span class="hamb-middle"></span>
+						<span class="hamb-bottom"></span>
+					</button>
+					<ul class="header_table2">
+						<li><a href="/app_view">应用概览</a></li>
+						<li class="active"><a href="javascript:void(0)">基础分析</a></li>
+						<li><a href="/contact_us">关于我们</a></li>
+					</ul>
+				</div>
+				<!--start of 内容页面-->
+				<div class="container">
+					<div class="box" id="timebar">
+  						<div class="box">
+  							<h3>历史趋势</h3>
+  						</div>
+{#  						<div class="box" style="display: flex;justify-content: flex-start;">#}
+{#  							<span>时间:</span>#}
+{#  							<a href="javascript:void(0);" onclick="select_time1()" id="time_select1">当日</a>#}
+{#  							<a href="javascript:void(0);" onclick="select_time2()" id="time_select2">7日</a>#}
+{#  							<a href="javascript:void(0);" onclick="select_time3()" id="time_select3">14日</a>#}
+{#  							<a href="javascript:void(0);" onclick="select_time4()" id="time_select4">30日</a>#}
+{#  							<p id="showtime" style="height: 20px;width: 300px;background-color: #FFFFFF;text-align: center;"></p>#}
+{#  						</div>#}
+					</div>
+					
+					<div class="box">
+						<!--导航条-->
+						
+						<!--图表区域-->
+						<div id="chart" style="width: 100%;height: auto;">
+							<div class="box" style="display: flex;border-style: none;">
+								<div style="height: 20px;width: 2px;background-color: rgb(0,0,0);margin-left: 1%;margin-right: 1%;"></div>
+								<p>&nbsp;&nbsp;&nbsp;趋势图</p>
+							</div>
+							<div class="box" id="box_chart1" style="height: 500px;background-color: rgba(244,244,244,0.5);">	</div>
+							<div class="box" style="display: flex;border-style: none;">
+								<div style="height: 20px;width: 2px;background-color: rgb(0,0,0);margin-left: 1%;margin-right: 1%;"></div>
+								<p>&nbsp;&nbsp;&nbsp;详细数据</p>
+							</div>
+							<div class="box" id="box_list1" style="height: 440px;background-color: rgba(244,244,244,0.5);">
+								<table id="table1">
+								</table>
+							</div>
+							<div class="box" style="display: flex;border-style: none;">
+								<div style="height: 20px;width: 2px;background-color: rgba(0,0,0,0);margin-left: 1%;margin-right: 1%;"></div>
+							</div>
+						</div>
+					</div>
+					
+					<!--制作人-->
+					<div class="box" style="border-style: none;display: flex;justify-content: center;background-color: rgba(0,0,0,0);">
+						<div class="inner">
+							<p>Data Analyzed for
+								<a href="javascript:void(0)">新华社</a>, by
+								<a href="javascript:void(0)">@创造404</a>.</p>
+						</div>
+					</div>
+				</div>
+				<!--end of 内容页面-->
+			</div>
+		<!-- /#page-content-wrapper -->
+		</div>
+		<!-- /#wrapper -->
+
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+		<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+		<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts-en.common.js"></script>
+		<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+        <!--表格1-->
+		<script src={% static "js/table1_2.js" %} type="text/javascript" charset="utf-8"></script>
+		<!--侧边栏效果-->
+		<script src={% static "js/slider_bar.js" %} type="text/javascript" charset="utf-8"></script>
+		<!--Tab切换-->
+		<script src={% static "js/tab_click.js" %} type="text/javascript" charset="utf-8"></script>
+		<!--时间切换-->
+
+
+		<!--highcharts 图表1-->
+		<script type="text/javascript">
+
+			console.log("周发文数")
+			console.log({{weekend_count_list|safe}})
+			console.log("周点赞数")
+			console.log({{weekend_likeNum_list|safe}})
+			console.log("周评论数")
+			console.log({{weekend_comment_list|safe}})
+			console.log("周阅读数")
+			console.log({{weekend_readNum_list|safe}})
+			var times = []
+			var weekend_count_lists = []
+			var weekend_likeNum_lists = []
+			var weekend_comment_lists = []
+			var weekend_readNum_lists = []
+			{%for key,value in weekend_count_list.items%}
+			    weekend_count_lists.push({{value}})
+			    times.push({{key}})
+			{%endfor%}
+			{%for key,value in weekend_likeNum_list.items%}
+			    weekend_likeNum_lists.push({{value}})
+			{%endfor%}
+			{%for key,value in weekend_comment_list.items%}
+			    weekend_comment_lists.push({{value}})
+			{%endfor%}
+			{%for key,value in weekend_readNum_list.items%}
+			    weekend_readNum_lists.push({{value}})
+			{%endfor%}
+			console.log(times)
+			console.log(weekend_count_lists)
+			console.log(weekend_likeNum_lists)
+			console.log(weekend_comment_lists)
+			console.log(weekend_readNum_lists)
+
+
+            var myChart = echarts.init(document.getElementById('box_chart1'));
+            var colors = ['#CC0033', '#003333', '#CC0033','#003333'];
+            var option = {
+                color: colors,
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross'
+                    }
+                },
+                grid: {
+                    right: '20%'
+                },
+                toolbox: {
+                    feature: {
+                        dataView: {show: true, readOnly: false},
+                        restore: {show: true},
+                        saveAsImage: {show: true}
+                    }
+                },
+                legend: {
+                    data:['浏览量PV','点赞数','评论数','发文数']
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        axisTick: {
+                            alignWithLabel: true
+                        },
+                        data: {{ date|safe }}
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        name: '浏览量PV',
+                        min: Math.min.apply(null, weekend_readNum_lists)-100000000,
+                        max: Math.max.apply(null, weekend_readNum_lists)+100000000,
+                        position: 'right',
+                        axisLine: {
+                            lineStyle: {
+                                {#color: colors[0]#}
+                            }
+                        },
+                        axisLabel: {
+                            formatter: '{value} '
+                        }
+                    },
+                    {
+                        type: 'value',
+                        name: '点赞数',
+                        min: Math.min.apply(null, weekend_likeNum_lists)-10000,
+                        max: Math.max.apply(null, weekend_likeNum_lists)+10000,
+                        position: 'right',
+                        offset: 100,
+                        axisLine: {
+                            lineStyle: {
+                                {#color: colors[1]#}
+                            }
+                        },
+                        axisLabel: {
+                            formatter: '{value}'
+                        }
+                    },
+                    {
+                        type: 'value',
+                        name: '评论数',
+                        min: Math.min.apply(null, weekend_comment_lists)-100,
+                        max: Math.max.apply(null, weekend_comment_lists)+100,
+                        position: 'left',
+                        axisLine: {
+                            lineStyle: {
+                                {#color: colors[2]#}
+                            }
+                        },
+                        axisLabel: {
+                            formatter: '{value}'
+                        }
+                    },
+                    {
+                        type: 'value',
+                        name: '发文数',
+                        min: Math.min.apply(null, weekend_count_lists)-10,
+                        max: Math.max.apply(null, weekend_count_lists)+10,
+                        position: 'left',
+                        offset: 60,
+                        axisLine: {
+                            lineStyle: {
+                                {#color: colors[3]#}
+                            }
+                        },
+                        axisLabel: {
+                            formatter: '{value}'
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        name:'浏览量PV',
+                        type:'line',
+                        data:weekend_readNum_lists,
+                        areaStyle: {
+                            normal: {
+
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: colors[0]
+                                }, {
+                                    offset: 1,
+                                    color: '#ffe'
+                                }])
+                            }
+                        },
+                    },
+                    {
+                        name:'点赞数',
+                        type:'line',
+                        yAxisIndex: 1,
+                        data:weekend_likeNum_lists,
+                        areaStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: colors[1]
+                                }, {
+                                    offset: 1,
+                                    color: '#ffe'
+                                }])
+                            }
+                        },
+                    },
+                    {
+                        name:'评论数',
+                        type:'bar',
+                        yAxisIndex: 2,
+                        data:weekend_comment_lists,
+                        areaStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: colors[2]
+                                }, {
+                                    offset: 1,
+                                    color: '#ffe'
+                                }])
+                            }
+                        },
+                    },
+                    {
+                        name:'发文数',
+                        type:'bar',
+                        yAxisIndex: 3,
+                        data:weekend_count_lists,
+                        areaStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: colors[3]
+                                }, {
+                                    offset: 1,
+                                    color: '#ffe'
+                                }])
+                            }
+                        },
+                    }
+                ]
+            };
+            myChart.setOption(option);
+
+
+
+		</script>
+		
+	</body>
+
+</html>

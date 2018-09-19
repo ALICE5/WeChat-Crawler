@@ -1,0 +1,695 @@
+{% load static %}
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>近7日数据</title>
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href={% static "css/homepage.css" %}>
+		<link rel="stylesheet" href={% static "css/index.css" %}>
+		<link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
+		<link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+
+	</head>
+
+	<body>
+		<div class="header">
+			<div id="picture" style="width: 220px;float: left;position: fixed;background-color: rgb(240,240,240);height: 50px;">
+				<a href="/cover" >
+					<img src={% static "img/chinaunicom.png" %}/>
+				</a>
+			</div>
+			<div style="height: 40px;margin-top:5px;width: 2px;background-color: rgb(100,100,100);float: left;margin-left: 220px;"></div>
+			<div style="height: 20px;margin-left:20px;margin-top:15px;width: 150px;float: left;">
+				<p style="font-size: 16px;">微信公众号数据分析</p>
+			</div>
+			<div class="header_table">
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)"><i class="glyphicon glyphicon-ok-circle"></i>&nbsp;&nbsp;创造404</a>
+				</div>
+				<div style="height: 40px;width: 2px;background-color: rgb(100,100,100);margin-left: 5%;margin-right: 5%;"></div>
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)">我的应用</a>
+				</div>
+				<div style="height: 40px;width: 2px;background-color: rgb(100,100,100);margin-left: 5%;margin-right: 5%;"></div>
+				<div style="height: 20px;margin-top:10px;width: auto">
+					<a href="javascript:void(0)">分析报表</a>
+				</div>
+			</div>
+		</div>
+		<div style="height: 0px;width: 220px;background-color: rgba(240,240,240,0);"></div>
+		<div id="wrapper" class="toggled">
+			
+			<div class="overlay" style="display: block;"></div>
+			<!-- Sidebar -->
+			<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+				<ul class="nav sidebar-nav">
+					<li class="sidebar-brand" style="height: 40px;">
+						<a href="/page1_1" style="height: 40px; font-size: 18px;">
+							<div style="color: #FFFFFF;margin-top: -10px;text-align: center;">近7日数据</div>
+						</a>
+					</li>
+
+					<li class="open">
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home"></i>&nbsp; 运营数据概览 <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">公众号整体情势预判</li>
+							<li>
+								<a href="/page1_1" style="color: rgba(255,11,11,0.9);">近7日数据</a>
+							</li>
+							<li>
+								<a href="/page1_2">历史趋势</a>
+							</li>
+						</ul>
+					</li>
+                    <li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-signal"></i>&nbsp; 内容质量分析 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">数据对比</li>
+
+							<li>
+								<a href="/page3_1">文章类型分析</a>
+							</li>
+							<li>
+								<a href="/page3_2">TOP10文章榜单</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-list"></i>&nbsp; 作者影响力分析 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">发现大V</li>
+
+							<li>
+								<a href="/page2_2">月度榜单</a>
+							</li>
+							<li>
+								<a href="/page2_3">年度榜单</a>
+							</li>
+						</ul>
+					</li>
+
+					<li>
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>&nbsp; 舆情监控 <span class="caret"></a>
+						<ul class="dropdown-menu" role="menu" data-stopPropagation="true">
+							<li class="dropdown-header" style="display: none;">智能语义分析+危机传播管理</li>
+							<li>
+								<a href="/page4_1">标题热词</a>
+							</li>
+							<li>
+								<a href="/page4_2">精选评论热词</a>
+							</li>
+                            <li>
+								<a href="/page4_3">情感分析</a>
+							</li>
+						</ul>
+					</li>
+					
+				</ul>
+			</nav>
+			<!-- /#sidebar-wrapper -->
+
+			<!-- Page Content -->
+			<div id="page-content-wrapper">
+				<div class="headbar">
+					<button type="button" class="hamburger is-open animated fadeInLeft" data-toggle="offcanvas">
+            				<span class="hamb-top"></span>
+						<span class="hamb-middle"></span>
+						<span class="hamb-bottom"></span>
+					</button>
+					<ul class="header_table2">
+						<li><a href="/app_view">应用概览</a></li>
+						<li class="active"><a href="javascript:void(0)">基础分析</a></li>
+						<li><a href="/contact_us">关于我们</a></li>
+					</ul>
+				</div>
+				<!--start of 内容页面-->
+				<div class="container">
+					<div class="head_img">
+						<a href="javascript:void(0)">
+							<img src={% static "img/WechatIMG2.jpeg" %} style="">
+						</a> 						
+  						<div>
+  							<h3>新华社<span style="font-size: 14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;微信号: newsxinhua</span></h3>
+  							<span>时事</span>
+  						</div>	
+					</div>
+					<div class="box">
+						
+					</div>
+					<div class="box">
+						<div class="box">
+							<div class="box_title">
+								<h4>关键指标</h4>
+							</div>
+							<div class="box_line">
+								<div>
+									<p>浏览量(pv)</p>
+									<p>{{ view_num }}</p>
+									<p>日️<span>&nbsp;↑&nbsp;</span>{{ view_num1 }}</p>
+								</div>
+								<div>
+									<p>点赞数</p>
+									<p>{{ like_num }}</p>
+									<p>日️<span>&nbsp;↑&nbsp;</span>{{ like_num1 }}</p>
+								</div>
+								<div>
+									<p>评论数(pv)</p>
+									<p>{{ comment_num }}</p>
+									<p>日️<span>&nbsp;↑&nbsp;</span>{{ comment_num1 }}</p>
+								</div>
+								<div>
+									<p>发文数(pv)</p>
+									<p>{{ count_num }}</p>
+									<p>日️<span>&nbsp;↑&nbsp;</span>{{ count1 }}</p>
+								</div>
+							</div>
+							<div class="box" style="display: flex;margin-top: 1px;">
+								<h5>截止昨天24:00的数据</h5><i class="glyphicon glyphicon-question-sign" style="margin: 7px;margin-top: 11px;color: rgba(0,0,0,.5);"></i>
+							</div>
+						</div>
+					</div>
+					
+					<div class="box">
+						<div class="box">
+						<!--导航条-->
+						<div class="box-table">
+							<div class="masthead">   
+						        <nav>
+						          	<ul class="nav nav-justified">
+						          		<li style="text-align:right;font-weight: bold;font-size: 16px;background-color: rgba(55,55,55,0.5);color: #EEEEEE;">近一周</li>
+						          		<li style="text-align:left;font-weight: bold;font-size: 16px;background-color: rgba(55,55,55,0.5);color: #EEEEEE;">指标</li>
+						            		<li id="tab_l1" class="active"><a href="javascript:void(0)" id="tab_a1">浏览量(PV)</a></li>
+						            		<li id="tab_l2"><a href="javascript:void(0)" id="tab_a2">点赞数</a></li>
+						            		<li id="tab_l3"><a href="javascript:void(0)" id="tab_a3">评论数</a></li>
+						            		<li id="tab_l4"><a href="javascript:void(0)" id="tab_a4">文章数</a></li>
+						            		<li></li>
+						            		<li></li>
+						            		<li></li>
+						          	</ul>
+						        </nav>
+							</div>						 	
+						</div>
+					</div>
+					
+						<!--图表区域-->
+						<div id="chart" style="width: 100%;height: auto;">
+							<div class="box" style="display: flex;border-style: none;">
+								<div style="height: 20px;width: 2px;background-color: rgb(0,0,0);margin-left: 1%;margin-right: 1%;"></div>
+								<p>&nbsp;&nbsp;&nbsp;趋势图</p>
+							</div>
+							<div class="box" id="box_chart1" style="height: 500px;background-color: rgba(244,244,244,0.5);display: block;">	</div>
+							<div class="box" id="box_chart2" style="height: 500px;background-color: rgba(244,244,244,0.5);display: none;">	</div>
+							<div class="box" id="box_chart3" style="height: 500px;background-color: rgba(244,244,244,0.5);display: none;">	</div>
+							<div class="box" id="box_chart4" style="height: 500px;background-color: rgba(244,244,244,0.5);display: none;">	</div>
+							<div class="box" style="display: flex;border-style: none;">
+								<div style="height: 20px;width: 2px;background-color: rgb(0,0,0);margin-left: 1%;margin-right: 1%;"></div>
+								<p>&nbsp;&nbsp;&nbsp;详细数据</p>
+							</div>
+							<div class="box" style="height: 400px;background-color: rgba(244,244,244,0.5);">
+								<table id="table"></table>
+							</div>
+							<div class="box" style="display: flex;border-style: none;">
+								<div style="height: 20px;width: 2px;background-color: rgba(0,0,0,0);margin-left: 1%;margin-right: 1%;"></div>
+							</div>
+						</div>
+					</div>
+					
+					<!--制作人-->
+					<div class="box" style="border-style: none;display: flex;justify-content: center;background-color: rgba(0,0,0,0);">
+						<div class="inner">
+							<p>Data Analyzed for
+								<a href="javascript:void(0)">新华社</a>, by
+								<a href="javascript:void(0)">@创造404</a>.</p>
+						</div>
+					</div>
+				</div>
+				<!--end of 内容页面-->
+			</div>
+		<!-- /#page-content-wrapper -->
+		</div>
+		<!-- /#wrapper -->
+
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+		<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+		<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts-en.common.js"></script>
+		<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+		<script src={% static "js/table1_1.js" %} type="text/javascript" charset="utf-8"></script>
+		<!--侧边栏效果-->
+		<script src={% static "js/slider_bar.js" %} type="text/javascript" charset="utf-8"></script>
+		<!--Tab切换-->
+		<!--highcharts 图表1-->
+		<script type="text/javascript">
+			var myChart = echarts.init(document.getElementById('box_chart1'));
+	    	option = {
+                title : {
+                    text: '7日浏览量',
+                    subtext: '2018年8月21日  至  2018年8月27日'
+                },
+                tooltip : {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data:['阅读量','阅读量_']
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : {{ date_num|safe }}
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value'
+                    }
+                ],
+                series : [
+                    {
+                        name:'阅读量',
+                        type:'bar',
+                        data:{{ view }},
+                        markPoint : {
+                            data : [
+                                {type : 'max', name: '最大值'},
+                                {type : 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine : {
+                            data : [
+                                {type : 'average', name: '平均值'}
+                            ]
+                        },
+                        barWidth : 50,
+                        itemStyle: {
+                            normal: {
+                                barBorderRadius: 15,
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: '#CC0000'
+                                }, {
+                                    offset: 1,
+                                    color: '#000066'
+                                }]),
+                                shadowColor: 'rgba(0, 0, 0, 0.4)',
+                                shadowBlur: 20
+                            }
+                        }
+                    },
+                    {
+                        name:'阅读量_',
+                        type:'line',
+                        data:{{ view }},
+                        symbolSize: 15,
+                        markPoint : {
+                            data : [
+                                {type : 'max', name: '最大值'},
+                                {type : 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine : {
+                            data : [
+                                {type : 'average', name: '平均值'}
+                            ]
+                        },
+                        itemStyle : {
+                            normal : {
+                                lineStyle:{
+                                    color:'#003300',
+                                    width: 4
+                                }
+                            }
+                        },
+
+                    }
+                ]
+            };
+
+			myChart.setOption(option);
+		</script>
+		<!--highcharts 图表2-->
+        <script type="text/javascript">
+            $(document).ready(function(){
+				$("#tab_a1").click(function(){
+					$("#tab_l1").addClass("active");
+					$("#tab_l2").removeClass();
+					$("#tab_l3").removeClass();
+					$("#tab_l4").removeClass();
+			    		$("#box_chart1").show();
+			    		$("#box_chart2").hide();
+			    		$("#box_chart3").hide();
+			    		$("#box_chart4").hide();
+			  	});
+
+			  	$("#tab_a2").click(function(){
+			  		$("#tab_l1").removeClass();
+					$("#tab_l2").addClass("active");
+					$("#tab_l3").removeClass();
+					$("#tab_l4").removeClass();
+			    		$("#box_chart1").hide();
+			    		$("#box_chart2").show();
+			    		$("#box_chart3").hide();
+			    		$("#box_chart4").hide();
+                    var myChart = echarts.init(document.getElementById('box_chart2'));
+                    option = {
+                        title : {
+                            text: "7日点赞数",
+                            subtext: '2018年8月21日  至  2018年8月27日'
+                        },
+                        tooltip : {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data:['点赞数','点赞数_']
+                        },
+                        toolbox: {
+                            show : true,
+                            feature : {
+                                mark : {show: true},
+                                dataView : {show: true, readOnly: false},
+                                magicType : {show: true, type: ['line', 'bar']},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        calculable : true,
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : {{ date_num|safe }}
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value'
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'点赞数',
+                                type:'bar',
+                                data:{{ like }},
+                                markPoint : {
+                                    data : [
+                                        {type : 'max', name: '最大值'},
+                                        {type : 'min', name: '最小值'}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name: '平均值'}
+                                    ]
+                                },
+                                barWidth : 50,
+                                itemStyle: {
+                                    normal: {
+                                        barBorderRadius: 15,
+                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                            offset: 0,
+                                            color: '#CC0000'
+                                        }, {
+                                            offset: 1,
+                                            color: '#000066'
+                                        }]),
+                                        shadowColor: 'rgba(0, 0, 0, 0.4)',
+                                        shadowBlur: 20
+                                    }
+                                }
+                            },
+                            {
+                                name:'点赞数_',
+                                type:'line',
+                                data:{{ like }},
+                                symbolSize: 15,
+                                markPoint : {
+                                    data : [
+                                        {type : 'max', name: '最大值'},
+                                        {type : 'min', name: '最小值'}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name: '平均值'}
+                                    ]
+                                },
+                                itemStyle : {
+                                    normal : {
+                                        lineStyle:{
+                                            color:'#003300',
+                                            width: 4
+                                        }
+                                    }
+                                },
+                            }
+                        ],
+
+                    };
+
+                    myChart.setOption(option);
+			  	});
+
+			  	$("#tab_a3").click(function(){
+			  		$("#tab_l1").removeClass();
+					$("#tab_l2").removeClass();
+					$("#tab_l3").addClass("active");
+					$("#tab_l4").removeClass();
+					$("#box_chart1").hide();
+                    $("#box_chart2").hide();
+                    $("#box_chart3").show();
+                    $("#box_chart4").hide();
+                    var myChart = echarts.init(document.getElementById('box_chart3'));
+                    option = {
+                        title : {
+                            text: '7日优质评论数',
+                            subtext: '2018年8月21日  至  2018年8月27日'
+                        },
+                        tooltip : {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data:['优质评论数','优质评论数_']
+                        },
+                        toolbox: {
+                            show : true,
+                            feature : {
+                                mark : {show: true},
+                                dataView : {show: true, readOnly: false},
+                                magicType : {show: true, type: ['line', 'bar']},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        calculable : true,
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : {{ date_num|safe }}
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value'
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'优质评论数',
+                                type:'bar',
+                                data:{{ comment }},
+                                barWidth : 50,
+                                markPoint : {
+                                    data : [
+                                        {type : 'max', name: '最大值'},
+                                        {type : 'min', name: '最小值'}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name: '平均值'}
+                                    ]
+                                },
+                                itemStyle: {
+                                    normal: {
+                                        barBorderRadius: 15,
+                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                            offset: 0,
+                                            color: '#CC0000'
+                                        }, {
+                                            offset: 1,
+                                            color: '#000066'
+                                        }]),
+                                        shadowColor: 'rgba(0, 0, 0, 0.4)',
+                                        shadowBlur: 20
+                                    }
+                                }
+                            },
+                            {
+                                name:'优质评论数_',
+                                type:'line',
+                                data:{{ comment }},
+                                symbolSize: 15,
+                                markPoint : {
+                                    data : [
+                                        {type : 'max', name: '最大值'},
+                                        {type : 'min', name: '最小值'}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name: '平均值'}
+                                    ]
+                                },
+                                itemStyle : {
+                                    normal : {
+                                        lineStyle:{
+                                            color:'#003300',
+                                            width: 4
+                                        }
+                                    }
+                                },
+                            }
+                        ]
+                    };
+
+                    myChart.setOption(option);
+			  	});
+
+			  	$("#tab_a4").click(function(){
+			  		$("#tab_l1").removeClass();
+					$("#tab_l2").removeClass();
+					$("#tab_l3").removeClass();
+					$("#tab_l4").addClass("active");
+			    		$("#box_chart1").hide();
+			    		$("#box_chart2").hide();
+			    		$("#box_chart3").hide();
+			    		$("#box_chart4").show();
+					var myChart = echarts.init(document.getElementById('box_chart4'));
+                    option = {
+                        title : {
+                            text: '7日发文',
+                            subtext: '2018年8月21日  至  2018年8月27日'
+                        },
+                        tooltip : {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data:['发文数','发文数_']
+                        },
+                        toolbox: {
+                            show : true,
+                            feature : {
+                                mark : {show: true},
+                                dataView : {show: true, readOnly: false},
+                                magicType : {show: true, type: ['line', 'bar']},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        calculable : true,
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : {{ date_num|safe }}
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value'
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'发文数',
+                                type:'bar',
+                                data:{{ count }},
+                                barWidth : 50,
+                                markPoint : {
+                                    data : [
+                                        {type : 'max', name: '最大值'},
+                                        {type : 'min', name: '最小值'}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name: '平均值'}
+                                    ]
+                                },
+                                itemStyle: {
+                                    normal: {
+                                        barBorderRadius: 15,
+                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                            offset: 0,
+                                            color: '#CC0000'
+                                        }, {
+                                            offset: 1,
+                                            color: '#000066'
+                                        }]),
+                                        shadowColor: 'rgba(0, 0, 0, 0.4)',
+                                        shadowBlur: 20
+                                    }
+                                }
+                            },
+                            {
+                                name:'发文数_',
+                                type:'line',
+                                data:{{ count }},
+                                symbolSize: 15,
+                                markPoint : {
+                                    data : [
+                                        {type : 'max', name: '最大值'},
+                                        {type : 'min', name: '最小值'}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name: '平均值'}
+                                    ]
+                                },
+                                itemStyle : {
+                                    normal : {
+                                        lineStyle:{
+                                            color:'#003300',
+                                            width: 4
+                                        }
+                                    }
+                                },
+                            }
+                        ]
+                    };
+
+                    myChart.setOption(option);
+
+			  	});
+		    });
+        </script>
+		<!--highcharts 图表3-->
+        <script type="text/javascript">
+
+        </script>
+		<!--highcharts 图表4-->
+	    <script type="text/javascript">
+
+        </script>
+		<!--表格-->
+		<script type="text/javascript">
+            console.log({{ date_num|safe }})
+		</script>
+	</body>
+		
+</html>
